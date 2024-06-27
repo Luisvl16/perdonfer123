@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perdón</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .button-container {
+            display: flex;
+            gap: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        #btn-si {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+        }
+        #btn-no {
+            background-color: #f44336;
+            color: white;
+            border: none;
+        }
+        #gif-container {
+            margin-top: 20px;
+        }
+        #gif-container img {
+            display: none;
+            width: 300px;
+            height: auto;
+        }
+        #top-gif {
+            width: 300px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <img id="top-gif" src="https://media1.tenor.com/images/f809212848a5c5bb1112f3a122888b58/tenor.gif?itemid=17338211" alt="GIF">
+    <h1>¿Me perdonas?</h1>
+    <div class="button-container">
+        <button id="btn-si">Sí</button>
+        <button id="btn-no">No</button>
+    </div>
+    <div id="gif-container">
+        <img id="bear-gif" src="https://th.bing.com/th/id/R.66145c12219423bf2b354ea5b8f6cc0c?rik=4qn1%2feJv0JlZEA&pid=ImgRaw&r=0" alt="Osos tiernos abrazándose">
+    </div>
+
+    <script>
+        const phrases = [
+            "Lo siento mucho",
+            "Fue mi error, perdóname",
+            "Te pido disculpas",
+            "No debería haberlo hecho, lo lamento",
+            "Estoy arrepentido",
+            "Me duele haberte lastimado",
+            "Te prometo no volver a hacerlo",
+            "Ya perdón",
+            "Ándale, perdona",
+            "Por favor, perdóname"
+        ];
+        let phraseIndex = 0;
+        const minFontSizeNo = 12; // Tamaño mínimo de fuente para el botón "No"
+
+        document.getElementById('btn-si').addEventListener('click', function() {
+            this.textContent = "¡Siii, te amo Fer! ❤️";
+            document.getElementById('bear-gif').style.display = 'block';
+            document.getElementById('btn-no').style.display = 'none'; // Ocultar el botón "No"
+            document.getElementById('top-gif').style.display = 'none'; // Ocultar el GIF superior
+        });
+
+        document.getElementById('btn-no').addEventListener('click', function() {
+            var btnSi = document.getElementById('btn-si');
+            var btnNo = document.getElementById('btn-no');
+            var currentSizeSi = parseInt(window.getComputedStyle(btnSi).fontSize);
+            var currentSizeNo = parseInt(window.getComputedStyle(btnNo).fontSize);
+            
+            btnSi.style.fontSize = (currentSizeSi + 2) + 'px';
+            if (currentSizeNo > minFontSizeNo) {
+                btnNo.style.fontSize = (currentSizeNo - 2) + 'px';
+            }
+
+            this.textContent = phrases[phraseIndex];
+            phraseIndex = (phraseIndex + 1) % phrases.length;
+        });
+    </script>
+</body>
+</html>
+
+
+
+
